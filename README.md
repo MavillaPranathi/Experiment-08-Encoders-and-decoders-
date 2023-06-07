@@ -66,67 +66,57 @@ Program for Endocers and Decoders  and verify its truth table in quartus using V
 Developed by: m.pranathi
 RegisterNumber: 212222240064
 */
-MULTIPLEXER
+ENCODER
 
-module nmux(a,s,y);
-input[3:0]a;
-input[1:0]s;
-output reg y;
-always @ (a,s)
-begin
-case(s)
-   2'b00:y=a[0];
-   2'b01:y=a[1];
-   2'b10:y=a[2];
-   2'b11:y=a[3];
-endcase
-end
+module enc(d0,d1,d2,d3,d4,d5,d6,d7,a,b,c);
+input d0,d1,d2,d3,d4,d5,d6,d7;
+output a,b,c;
+or(a,d4,d5,d6,d7);
+or(b,d2,d3,d6,d7);
+or(c,d1,d3,d5,d7);
 endmodule
 
-DEMULTIPLEXER
+DECODER
 
-module dmux(input in, input [1:0] sel, output reg [3:0] out);
-  always @(in or sel) begin
-    case(sel)
-      2'b00: out = 4'b0001;
-      2'b01: out = 4'b0010;
-      2'b10: out = 4'b0100;
-      2'b11: out = 4'b1000;
-      default: out = 4'b0000; // Default case
-    endcase
-  end
+module deco(a,b,c,d0,d1,d2,d3,d4,d5,d6,d7);
+input a,b,c;
+output d0,d1,d2,d3,d4,d5,d6,d7;
+assign d0 = (~a&~b&~c);
+assign d1 = (~a&~b&c);
+assign d2 = (~a&b&~c);
+assign d3 = (~a&b&c);
+assign d4 = (a&~b&~c);
+assign d5 = (a&~b&c);
+assign d6 = (a&b&~c);
+assign d7 = (a&b&c);
 endmodule
-
 ```
-### RTL LOGIC  
+### RTL LOGIC
+### ENCODER
 
-MULTIPLEXER
+![244051105-33299991-1c4a-4807-a14b-8179aa2b23d9](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/0d5efb04-34d6-48b2-93b9-5c50c8ac0ad6)
 
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/47e611ee-b616-4a62-b308-bb64cd19b095)
+### DECODER
 
-DEMULTIPLEXER
+![244049195-43ee1d0e-09e6-4535-93b0-74abed121ec8](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/37bb323a-e5fa-47d0-8ecd-25a606d09371)
 
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/c0d569f2-04cb-4183-b88a-a06ded526550)
+### TIMING DIAGRAMS
+### ENCODER
 
-### TIMING DIGRAMS  
+![244051146-948ee50a-8ca6-43d1-8e73-56c081183e0d](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/724ba263-5f0d-4c12-aa51-400b0cccd23d)
 
-MULTIPLEXER
+### DECODER
 
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/f80f3990-0d12-43ec-aee2-77c86498ef98)
+![244050482-b7adb8f7-4ddc-4abb-b6fc-42a135a3ca59](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/3d52cb1e-46c2-4d83-be89-7d02bea35994)
 
-DEMULTIPLEXER
+### TRUTH TABEL
+### ENCODER
 
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/489900f6-13ec-4b98-8c6e-c8ff8b60ae41)
+![244050550-41362149-4614-4357-b019-30f9fa0e7f30](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/d8a81c2d-11b4-4150-864d-95aa234f7610)
 
-### TRUTH TABLE 
+### DECODER
 
-MULTIPLEXER
+![244050584-741c6ae9-aef3-497a-a8c3-74fad71a30c6](https://github.com/MavillaPranathi/Experiment-08-Encoders-and-decoders-/assets/118343610/4643ec4f-6846-4ad0-bf5f-cf116b046b77)
 
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/15696d5d-4643-40f2-be79-72286cfd10c1)
-
-DEMULTIPLEXER
-
-![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/427d79fe-98ad-4b7f-9825-421cc9b12cdd)
-
-### RESULTS 
-Therefore multiplexer and demultiplexer is executed successfully.
+### RESULT
+Thus the program to design encoder and decoder is successfully completed.
