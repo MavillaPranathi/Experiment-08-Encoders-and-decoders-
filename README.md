@@ -62,35 +62,71 @@ D7 = X Y Z
 ### PROGRAM 
 /*
 Program for Endocers and Decoders  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+```
+Developed by: m.pranathi
+RegisterNumber: 212222240064
 */
+MULTIPLEXER
 
+module nmux(a,s,y);
+input[3:0]a;
+input[1:0]s;
+output reg y;
+always @ (a,s)
+begin
+case(s)
+   2'b00:y=a[0];
+   2'b01:y=a[1];
+   2'b10:y=a[2];
+   2'b11:y=a[3];
+endcase
+end
+endmodule
 
+DEMULTIPLEXER
 
+module dmux(input in, input [1:0] sel, output reg [3:0] out);
+  always @(in or sel) begin
+    case(sel)
+      2'b00: out = 4'b0001;
+      2'b01: out = 4'b0010;
+      2'b10: out = 4'b0100;
+      2'b11: out = 4'b1000;
+      default: out = 4'b0000; // Default case
+    endcase
+  end
+endmodule
 
-
-
+```
 ### RTL LOGIC  
 
+MULTIPLEXER
 
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/47e611ee-b616-4a62-b308-bb64cd19b095)
 
+DEMULTIPLEXER
 
-
-
-
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/c0d569f2-04cb-4183-b88a-a06ded526550)
 
 ### TIMING DIGRAMS  
 
+MULTIPLEXER
 
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/f80f3990-0d12-43ec-aee2-77c86498ef98)
 
+DEMULTIPLEXER
 
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/489900f6-13ec-4b98-8c6e-c8ff8b60ae41)
 
 ### TRUTH TABLE 
 
+MULTIPLEXER
 
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/15696d5d-4643-40f2-be79-72286cfd10c1)
 
+DEMULTIPLEXER
 
-
+![image](https://github.com/varsha-2005/Exercise-07-Multiplexer-and-De-multiplexer/assets/119288183/427d79fe-98ad-4b7f-9825-421cc9b12cdd)
 
 ### RESULTS 
+Therefore multiplexer and demultiplexer is executed successfully.
